@@ -12,14 +12,36 @@ interface CodeCellProps {
   cell: Cell;
 }
 
+const default_content = `
+  import React from 'react';
+
+  const Counter = () => {
+    const [count, setCount] = React.useState(0);
+    return (
+      <div>
+        <button onClick={() => setCount(count + 1)}>Click</button>
+        <h3>Count: {count}</h3>
+      </div>
+    )      
+  }
+
+  // Display any variable or React Component by calling 'exec'
+  exec(<Counter />);
+`;
+
 const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
   const { updateCell, createBundle } = useActions();
   const bundle = useTypedSelector((state) => state.bundles[cell.id]);
   const cumulativeCode = useCumulativeCode(cell.id);
 
-  useEffect(() => {
+  useEffect(() => { 
+
+    if(!cell.content){
+      updateCell(cell.id, default_content)
+    }
+    
     if (!bundle) {
-      createBundle(cell.id, cumulativeCode);
+      createBundle(cell.id, cumulativeCode); 
       return;
     }
 
