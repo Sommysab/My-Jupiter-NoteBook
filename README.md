@@ -2,9 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-![alt text](https://github.com/Sommysab/My-Jupiter-NoteBook/blob/master/image1.png?raw=true)
-
 ![alt text](https://github.com/Sommysab/My-Jupiter-NoteBook/blob/master/image2.png?raw=true)
+
+![alt text](https://github.com/Sommysab/My-Jupiter-NoteBook/blob/master/image1.png?raw=true)
 
 ## Available Scripts
 
