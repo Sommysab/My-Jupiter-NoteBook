@@ -5,6 +5,7 @@ import CellListItem from './cell-list-item';
 import AddCell from './add-cell';
 
 const CellList: React.FC = () => {
+
   const cells = useTypedSelector(({ cells: { order, data } }) =>
     order.map((id) => data[id])
   );

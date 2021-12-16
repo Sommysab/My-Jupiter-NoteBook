@@ -1,6 +1,7 @@
 import { Dispatch } from 'redux';
 import { ActionType } from '../action-types';
 import {
+  DefaultSetAction,
   UpdateCellAction,
   DeleteCellAction,
   MoveCellAction,
@@ -11,6 +12,12 @@ import {
 import { CellTypes } from '../cell';
 import bundle from '../../bundler';
 
+
+export const defaultSet = (): DefaultSetAction => {
+  return {
+    type: ActionType.DEFAULT_SET,
+  };
+};
 
 export const updateCell = (id: string, content: string): UpdateCellAction => {
   return {

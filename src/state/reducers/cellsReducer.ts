@@ -10,6 +10,7 @@ interface CellsState {
   data: {
     [key: string]: Cell;
   };
+  default_set: boolean;
 }
 
 const initialState: CellsState = {
@@ -17,10 +18,15 @@ const initialState: CellsState = {
   error: null,
   order: [],
   data: {},
+  default_set: false,
 };
 
 const reducer = produce((state: CellsState = initialState, action: Action) => {
   switch (action.type) {
+    case ActionType.DEFAULT_SET:
+      state.default_set = true; 
+      
+      return state;
     case ActionType.UPDATE_CELL:
       const { id, content } = action.payload;
 

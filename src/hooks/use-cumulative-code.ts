@@ -2,7 +2,7 @@ import { useTypedSelector } from './use-typed-selector';
 
 export const useCumulativeCode = (cellId: string) => { 
 
-  return useTypedSelector( ({cells: { data, order }}) => { 
+  const cmCode = useTypedSelector( ({cells: { data, order }}) => { 
 
     const orderedCells = order.map((id) => data[id]); 
 
@@ -10,7 +10,7 @@ export const useCumulativeCode = (cellId: string) => {
     import _React from 'react';
     import _ReactDOM from 'react-dom';
 
-    const exec = value => {        
+    var exec = value => {        
       const root = document.querySelector('#root'); 
       if(typeof value === 'object') {
         if(value.$$typeof && value.props) _ReactDOM.render(value, root);
@@ -19,7 +19,7 @@ export const useCumulativeCode = (cellId: string) => {
         root.innerHTML += value +'<br />'; 
     };    
     `; 
-    const showFuncNoop = 'var exec = () => {}';
+    const showFuncNoop = 'var exec = () => {}'; // var exec = () => {}
     const cumulativeCode = [];
     for (let c of orderedCells) {
       if (c.type === 'code') {
@@ -35,4 +35,8 @@ export const useCumulativeCode = (cellId: string) => {
     return cumulativeCode; 
 
   }).join('\n');
+
+  console.log('cmCode', cmCode);
+  return cmCode;
+
 };

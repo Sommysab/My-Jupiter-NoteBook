@@ -8,7 +8,8 @@ interface CellListItemProps {
   cell: Cell;
 }
 
-const CellListItem: React.FC<CellListItemProps> = ({ cell }) => {
+const CellListItem: React.FC<CellListItemProps> = ({ cell}) => {
+
   let child: JSX.Element;
   if (cell.type === 'code') {
     child = (

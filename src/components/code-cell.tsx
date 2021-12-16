@@ -29,18 +29,19 @@ const default_content = `
   exec(<Counter />);
 `;
 
-const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
-  const { updateCell, createBundle } = useActions();
-  const bundle = useTypedSelector((state) => state.bundles[cell.id]);
+const CodeCell: React.FC<CodeCellProps> = ({ cell}) => {
+  const { updateCell, createBundle, defaultSet } = useActions();
+  const [bundle, default_set] = useTypedSelector((state) => [state.bundles[cell.id], state.cells.default_set]);
   const cumulativeCode = useCumulativeCode(cell.id);
 
   useEffect(() => { 
 
-    if(!cell.content){
-      updateCell(cell.id, default_content)
+    if(!cell.content && !default_set){ 
+      updateCell(cell.id, default_content);
+      defaultSet();
     }
     
-    if (!bundle) {
+    if (!bundle) {      
       createBundle(cell.id, cumulativeCode); 
       return;
     }
@@ -53,7 +54,7 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
       clearTimeout(timer);
     };
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps 
   }, [cumulativeCode, cell.id, createBundle]);
 
   

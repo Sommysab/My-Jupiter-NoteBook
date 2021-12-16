@@ -1,6 +1,10 @@
 import { ActionType } from '../action-types';
 import { CellTypes } from '../cell';
 
+export interface DefaultSetAction {
+  type: ActionType.DEFAULT_SET;
+}
+
 export type Direction = 'up' | 'down';
 export interface MoveCellAction {
   type: ActionType.MOVE_CELL;
@@ -50,6 +54,7 @@ export interface BundleCompleteAction {
 }
 
 export type Action =
+  | DefaultSetAction
   | MoveCellAction
   | DeleteCellAction
   | InsertCellAfterAction
